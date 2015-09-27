@@ -10,6 +10,8 @@ import android.os.Parcelable;
 public class Product implements Parcelable {
 
     private String name;
+
+
     private int quantity;
     private float cost;
 
@@ -59,5 +61,14 @@ public class Product implements Parcelable {
 
     public float getCost() {
         return cost;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", cost=" + cost +
+                '}';
     }
 }

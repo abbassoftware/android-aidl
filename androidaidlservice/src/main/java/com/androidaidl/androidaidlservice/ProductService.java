@@ -10,6 +10,7 @@ import com.androidaidl.androidaidllibrary.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 /**
  * Created by abbas on 27/9/15.
@@ -29,7 +30,7 @@ public class ProductService extends Service {
 
     private final IRemoteProductService.Stub mBinder = new IRemoteProductService.Stub() {
 
-        List <Product> products = new ArrayList<Product>();
+        List <Product> products = Collections.synchronizedList(new ArrayList<Product>());
 
         @Override
         public void addProduct(String name, int quantity, float cost) throws RemoteException {
@@ -37,6 +38,8 @@ public class ProductService extends Service {
             //Idealy you should store the product in a local data base
             //or in some remote service.
             //You can add that code here . We are just storing in In memory list.
+            Product product = new Product(name, quantity, cost);
+            products.add(product);
         }
 
         @Override
